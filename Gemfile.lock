@@ -384,6 +384,7 @@ DEPENDENCIES
   selenium-webdriver
   shoulda
   simple_form
+  simplecov
   simplecov-rcov
   spring
   sqlite3

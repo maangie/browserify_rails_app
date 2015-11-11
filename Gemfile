@@ -54,7 +54,6 @@ group :development, :test do
   gem 'guard-rspec', require: false
   gem 'bullet'
   gem 'rack-mini-profiler'
-  gem 'simplecov-rcov', require: false
   gem 'fuubar'
   gem 'database_cleaner'
   gem 'ffaker'
@@ -79,6 +78,8 @@ group :test do
   gem 'shoulda'
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'simplecov'
+  gem 'simplecov-rcov'
 end
 
 group :production do
