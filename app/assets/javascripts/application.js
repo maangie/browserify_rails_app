@@ -16,5 +16,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require validationEngine/js/jquery.validationEngine
+//= require validationEngine/js/languages/jquery.validationEngine-ja.js
 //= require turbolinks
 //= require_tree .

@@ -1,5 +1,5 @@
 <%= simple_form_for todo, html: { class: 'form-horizontal' } do |f| %>
-  <%= f.input :title %>
+  <%= f.input :title, input_html: { class: 'validate[required,minsize[1]]' } %>
   <%= error_span(todo[:title]) %>
   <%= f.input :content %>
   <%= error_span(todo[:content]) %>
@@ -7,7 +7,7 @@
   <%= error_span(todo[:todo_date]) %>
 
   <%= link_to(t('.submit', default: t('helpers.submit.create')),
-              '#', class: 'btn btn-primary active', id: :submit) %>
+              '#', class: 'btn btn-primary', id: :submit) %>
 
   <%= link_to(t('.cancel', default: t('helpers.links.cancel')),
               todos_path, class: 'btn btn-default') %>
