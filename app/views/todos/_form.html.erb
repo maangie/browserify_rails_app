@@ -1,4 +1,4 @@
-<%= simple_form_for todo, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for todo, html: { class: 'form-horizontal' } do |f| %>
   <%= f.input :title %>
   <%= error_span(todo[:title]) %>
   <%= f.input :content %>
@@ -6,7 +6,7 @@
   <%= f.input :todo_date %>
   <%= error_span(todo[:todo_date]) %>
 
-  <%= f.button :submit, :class => 'btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                todos_path, :class => 'btn btn-default' %>
+  <%= f.button :submit, class: 'btn-primary' %>
+  <%= link_to(t('.cancel', default: t('helpers.links.cancel')),
+              todos_path, class: 'btn btn-default') %>
 <% end %>
