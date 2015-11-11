@@ -50,7 +50,6 @@ group :development, :test do
   gem 'guard-rspec', require: false
   gem 'bullet'
   gem 'rack-mini-profiler'
-  gem 'rails-erd'
   gem 'simplecov-rcov', require: false
   gem 'fuubar'
   gem 'database_cleaner'
@@ -58,12 +57,24 @@ group :development, :test do
   gem 'timecop'
   gem 'factory_girl_rails', require: false
   gem 'thin'
-nd
+end
 
 group :development do
   gem 'sqlite3' # Use sqlite3 as the database for Active Record
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+
+  gem 'rails-erd'
 end
 
+group :test do
+  gem 'shoulda'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+end
+
+group :production do
+  gem 'rails_12factor'
+  gem 'puma'
+end
