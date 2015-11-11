@@ -39,6 +39,7 @@ gem 'browserify-rails'
 gem 'simple_form'
 gem 'less-rails'
 gem 'rails-i18n'
+gem 'bower-rails'
 
 group :development, :test do
   # Spring speeds up development by keeping your application running
