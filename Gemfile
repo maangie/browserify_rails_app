@@ -35,6 +35,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 gem 'twitter-bootstrap-rails'
+gem 'browserify-rails'
+gem 'simple_form'
 
 group :development, :test do
   # Spring speeds up development by keeping your application running
