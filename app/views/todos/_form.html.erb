@@ -6,7 +6,9 @@
   <%= f.input :todo_date %>
   <%= error_span(todo[:todo_date]) %>
 
-  <%= f.button :submit, class: 'btn-primary' %>
+  <%= link_to(t('.submit', default: t('helpers.submit.create')),
+              '#', class: 'btn btn-primary active', id: :submit) %>
+
   <%= link_to(t('.cancel', default: t('helpers.links.cancel')),
               todos_path, class: 'btn btn-default') %>
 <% end %>
