@@ -1,6 +1,12 @@
+# -*- coffee -*-
+
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
+
+<% c = environment.context_class %>
+<% c.instance_eval { include ActionView::Helpers::TranslationHelper } %>
+<% c.instance_eval { include Rails.application.routes.url_helpers } %>
 
 require 'ydn.db'
 
@@ -11,23 +17,6 @@ db = new ydn.db.Storage(
   DB_NAME,
   { stores: [{ name: STORE_NAME, keyPath: 'id', autoIncrement: true }] }
 )
-
-$(document).on 'click', '#submit', ->
-  return unless $('#new_todo').validationEngine('validate')
-
-  title   = $('#todo_title').val()
-  content = $('#todo_content').val()
-
-  date = new Date(
-    $('#todo_todo_date_1i').val(), $('#todo_todo_date_2i').val() - 1,
-    $('#todo_todo_date_3i').val(), $('#todo_todo_date_4i').val(),
-    $('#todo_todo_date_5i').val()
-  )
-
-  todo = { title: title, content: content, date: date.valueOf() }
-  db.remove STORE_NAME, id if id = getTodoId()
-  db.add(STORE_NAME, todo).done (key) ->
-    location.href = "/todos/#{key}"
 
 $('document').ready ->
   indexInit() if $('.todos.index').length
@@ -84,8 +73,31 @@ editInit = () ->
     $('#todo_todo_date_4i').val get2DigitNumber d.getHours()
     $('#todo_todo_date_5i').val get2DigitNumber d.getMinutes()
 
-deleteTodo = (id)
-  return false unless confirm('よろしいですか？')
+$(document).on 'click', '#submit', ->
+  return unless $('#new_todo').validationEngine('validate')
+
+  title   = $('#todo_title').val()
+  content = $('#todo_content').val()
+
+  date = new Date(
+    $('#todo_todo_date_1i').val(), $('#todo_todo_date_2i').val() - 1,
+    $('#todo_todo_date_3i').val(), $('#todo_todo_date_4i').val(),
+    $('#todo_todo_date_5i').val()
+  )
+
+  todo = { title: title, content: content, date: date.valueOf() }
+  db.remove STORE_NAME, id if id = getTodoId()
+  db.add(STORE_NAME, todo).done (key) ->
+    location.href = "/todos/#{key}"
+
+$(document).on 'click', '#delete', ->
+   deleteTodo getTodoId()
+   location.href = "<%= todos_path %>"
+
+deleteTodo = (id) ->
+  return false unless confirm "<%= t('helpers.links.confirm',
+                                     default: 'Are you sure?') %>"
+
   db.remove STORE_NAME, id
 
 getTodoId = () -> parseInt($('#todo_id').text())

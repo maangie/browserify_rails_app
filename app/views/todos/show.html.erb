@@ -19,12 +19,6 @@
 <%= link_to t('.edit', default: t("helpers.links.edit")),
               edit_todo_path(@todo), class: 'btn btn-default' %>
 
-<% data = { confirm: t('.confirm', default: t('helpers.links.confirm',
-                                              default: 'Are you sure?')) } %>
-
-<%= link_to(t('.destroy', default: t('helpers.links.destroy')),
-            todo_path(@todo),
-            id: 'delete',
-            method: 'delete',
-            data: data,
+<%= link_to(t('.destroy', default: t('helpers.links.destroy')), '#',
+            id: :delete,
             class: 'btn btn-danger') %>
