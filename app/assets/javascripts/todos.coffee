@@ -12,15 +12,6 @@ db = new ydn.db.Storage(
   { stores: [{ name: STORE_NAME, keyPath: 'id', autoIncrement: true }] }
 )
 
-# db.put('store-name', {message: 'Hello world!'}, 'id1');
-# db.get('store-name', 'id1').always((record) -> console.log(record))
-
-# console.log db.count('store-name')
-
-
-# db.from('store-name').list(10).done (objs) ->
-#  console.log(objs)
-
 $(document).on 'click', '#submit', ->
   return unless $('#new_todo').validationEngine('validate')
 
@@ -33,16 +24,10 @@ $(document).on 'click', '#submit', ->
     $('#todo_todo_date_5i').val()
   )
 
-  console.log title
-  console.log content
-  console.log date
-
   todo = { title: title, content: content, date: date.valueOf() }
-  if id = getTodoId()
-    db.remove STORE_NAME, id
-    db.put STORE_NAME, todo
-  else
-    db.add STORE_NAME, todo
+  db.remove STORE_NAME, id if id = getTodoId()
+  db.add(STORE_NAME, todo).done (key) ->
+    location.href = "/todos/#{key}"
 
 $('document').ready ->
   indexInit() if $('.todos.index').length
@@ -84,10 +69,7 @@ indexInit = () ->
         $('#todo_rows').append tr
 
 showInit = () ->
-  console.log('showInit')
-  console.log $('#todo_id').text()
   db.get(STORE_NAME, getTodoId()).done (v) ->
-    console.log(v)
     $('#title').text v.title
     $('#content').text v.content
     $('#date').text getLocaleDateTimeString(v.date)
@@ -98,7 +80,6 @@ editInit = () ->
     $('#todo_content').val(v.content)
 
     d = new Date(v.date)
-    console.log d.getMinutes()
     $('#todo_todo_date_1i').val d.getFullYear()
     $('#todo_todo_date_2i').val d.getMonth() + 1
     $('#todo_todo_date_3i').val d.getDate()
