@@ -8,23 +8,19 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:content) %></th>
       <th><%= model_class.human_attribute_name(:todo_date) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', default: t('helpers.actions') %></th>
     </tr>
   </thead>
 
-  <tbody>
+  <tbody id="todo_rows">
     <% @todos.each do |todo| %>
       <tr>
-        <td><%= link_to todo.id, todo_path(todo) %></td>
-        <td><%= todo.title %></td>
+        <td><%= link_to todo.title, todo_path(todo) %></td>
         <td><%= todo.content %></td>
         <td><%= todo.todo_date %></td>
-        <td><%= l todo.created_at %></td>
         <td>
           <%= link_to(t('.edit', default: t('helpers.links.edit')),
                       edit_todo_path(todo), class: 'btn btn-default btn-xs') %>
