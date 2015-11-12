@@ -59,9 +59,7 @@ indexInit = () ->
                    .attr('href', '#')
                    .attr('data-id', v.id)
                    .click ->
-                     if confirm('よろしいですか？')
-                       id = $(@).attr('data-id')
-                       db.remove STORE_NAME, id
+                     if deleteTodo $(@).attr('data-id')
                        $("#todo-#{id}").fadeOut()
 
         $('<td/>').append(edit_link).append(delete_link).appendTo tr
@@ -85,6 +83,10 @@ editInit = () ->
     $('#todo_todo_date_3i').val d.getDate()
     $('#todo_todo_date_4i').val get2DigitNumber d.getHours()
     $('#todo_todo_date_5i').val get2DigitNumber d.getMinutes()
+
+deleteTodo = (id)
+  return false unless confirm('よろしいですか？')
+  db.remove STORE_NAME, id
 
 getTodoId = () -> parseInt($('#todo_id').text())
 
