@@ -1,0 +1,24 @@
+<%- model_class = Todo -%>
+<div hidden id="todo_id"><%= @todo.id %></div>
+<div class="page-header">
+  <h1><%=t '.title', default: model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+  <dd id="title"><%= @todo.title %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:content) %>:</strong></dt>
+  <dd id="content"><%= @todo.content %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:todo_date) %>:</strong></dt>
+  <dd id="date"><%= @todo.todo_date %></dd>
+</dl>
+
+<%= link_to t('.back', default: t("helpers.links.back")),
+              todos_path, class: 'btn btn-default'  %>
+
+<%= link_to t('.edit', default: t("helpers.links.edit")),
+              edit_todo_path(@todo), class: 'btn btn-default' %>
+
+<%= link_to(t('.destroy', default: t('helpers.links.destroy')), '#',
+            id: :delete,
+            class: 'btn btn-danger') %>

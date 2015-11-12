@@ -1,0 +1,10 @@
+<%- model_class = Todo -%>
+<div class="page-header">
+  <h1>
+    <%= t('.title',
+          default: [:'helpers.titles.edit', 'Edit %{model}'],
+          model: model_class.model_name.human.titleize) %>
+  </h1>
+</div>
+<div hidden id="todo_id"><%= @todo.id %></div>
+<%= render 'form', todo: @todo %>

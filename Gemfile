@@ -35,6 +35,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 gem 'twitter-bootstrap-rails'
+gem 'browserify-rails'
+gem 'simple_form'
+gem 'less-rails'
+gem 'rails-i18n'
+gem 'bower-rails'
+gem 'jquery-turbolinks'
 
 group :development, :test do
   # Spring speeds up development by keeping your application running
@@ -50,7 +56,6 @@ group :development, :test do
   gem 'guard-rspec', require: false
   gem 'bullet'
   gem 'rack-mini-profiler'
-  gem 'simplecov-rcov', require: false
   gem 'fuubar'
   gem 'database_cleaner'
   gem 'ffaker'
@@ -65,6 +70,9 @@ group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
+  gem 'better_errors'
+  gem 'brakeman', require: false
+  gem 'rails_best_practices'
   gem 'rails-erd'
 end
 
@@ -72,6 +80,8 @@ group :test do
   gem 'shoulda'
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'simplecov'
+  gem 'simplecov-rcov'
 end
 
 group :production do
