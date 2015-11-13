@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Todo, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should have_attribute(:title) }
+  it { should have_attribute(:content) }
+  it { should have_attribute(:todo_date) }
 end
