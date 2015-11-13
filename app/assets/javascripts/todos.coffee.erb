@@ -48,7 +48,8 @@ indexInit = () ->
                    .attr('href', '#')
                    .attr('data-id', v.id)
                    .click ->
-                     if deleteTodo $(@).attr('data-id')
+                     console.log $(@).attr('data-id')
+                     if id = deleteTodo($(@).attr('data-id'))
                        $("#todo-#{id}").fadeOut()
 
         $('<td/>').append(edit_link).append(delete_link).appendTo tr
@@ -98,7 +99,8 @@ deleteTodo = (id) ->
   return false unless confirm "<%= t('helpers.links.confirm',
                                      default: 'Are you sure?') %>"
 
-  db.remove STORE_NAME, id
+  db.remove STORE_NAME, id = parseInt(id)
+  id
 
 getTodoId = () -> parseInt($('#todo_id').text())
 
