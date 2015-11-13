@@ -27,9 +27,9 @@ class TodosController < ApplicationController
       @todo = Todo.new(id: params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the
-    # white list through.
-    def todo_params
-      params.require(:todo).permit(:title, :content, :todo_date)
-    end
+    # # Never trust parameters from the scary internet, only allow the
+    # # white list through.
+    # def todo_params
+    #   params.require(:todo).permit(:title, :content, :todo_date)
+    # end
 end
