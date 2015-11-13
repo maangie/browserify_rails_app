@@ -9,6 +9,7 @@ browserify-rails サンプル
 % bin/bundle install --without=production
 % bin/rake bower:install
 % npm install
+% bin/rake db:migrate
 % bin/rails server -d
 % open http://localhost:3000
 ```
